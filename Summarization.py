@@ -73,7 +73,7 @@ if(len(sel_L3) > 0):
     df_filter_by_classes = df_filter_by_classes[df_filter_by_classes['L3'].isin(sel_L3)]
     num_verified_3, num_not_yet_3, num_cor_3, num_incor_3, num_need_info_3 = count_result(df_filter_by_classes, 'L3')
     str_sel_l3 = ", ".join(sel_L3)
-    st.subheader("L3: " + str_sel_l13)
+    st.subheader("L3: " + str_sel_l3)
     st.write(" - No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
     st.write(" - No. of verified records:", num_verified_3)
     st.write(" - No. of not determined records:", num_not_yet_3)
