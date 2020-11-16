@@ -38,7 +38,8 @@ col_l1, col_l2,col_l3, col_l4,col_l5 = st.beta_columns(5)
 sel_L1 = col_l1.multiselect("L1", ls_L1, default = "Information Technology Broadcasting and Telecommunications")
 df_filter_by_classes = df_summary[df_summary['L1'].isin(sel_L1)]
 num_verified_1, num_not_yet_1, num_cor_1, num_incor_1, num_need_info_1 = count_result(df_filter_by_classes, 'L1')
-st.write("L1:  No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
+st.subheader("L1: " + sel_L1)
+st.write(" - No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
 st.write(" - No. of verified records:", num_verified_1)
 st.write(" - No. of not determined records:", num_not_yet_1)
 st.write(" - No. of correct records:", num_cor_1)
@@ -53,7 +54,8 @@ sel_L2 = col_l2.multiselect("L2", ls_L2_from_L1)
 if(len(sel_L2) > 0):
     df_filter_by_classes = df_filter_by_classes[df_filter_by_classes['L2'].isin(sel_L2)]
     num_verified_2, num_not_yet_2, num_cor_2, num_incor_2, num_need_info_2 = count_result(df_filter_by_classes, 'L2')
-    st.write("L2:  No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
+    st.subheader("L2: " + sel_L2)
+    st.write(" - No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
     st.write(" - No. of verified records:", num_verified_2)
     st.write(" - No. of not determined records:", num_not_yet_2)
     st.write(" - No. of correct records:", num_cor_2)
@@ -67,7 +69,8 @@ sel_L3 = col_l3.multiselect("L3", ls_L3_from_L2)
 if(len(sel_L3) > 0):
     df_filter_by_classes = df_filter_by_classes[df_filter_by_classes['L3'].isin(sel_L3)]
     num_verified_3, num_not_yet_3, num_cor_3, num_incor_3, num_need_info_3 = count_result(df_filter_by_classes, 'L3')
-    st.write("L3:  No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
+    st.subheader("L3: " + sel_L3)
+    st.write(" - No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
     st.write(" - No. of verified records:", num_verified_3)
     st.write(" - No. of not determined records:", num_not_yet_3)
     st.write(" - No. of correct records:", num_cor_3)
@@ -81,7 +84,8 @@ sel_L4 = col_l4.multiselect("L4", ls_L4_from_L3)
 if(len(sel_L4) > 0):
     df_filter_by_classes = df_filter_by_classes[df_filter_by_classes['L4'].isin(sel_L4)]
     num_verified_4, num_not_yet_4, num_cor_4, num_incor_4, num_need_info_4 = count_result(df_filter_by_classes, 'L4')
-    st.write("L4:  No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
+    st.subheader("L4: " + sel_L4)
+    st.write(" - No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
     st.write(" - No. of verified records:", num_verified_4)
     st.write(" - No. of not determined records:", num_not_yet_4)
     st.write(" - No. of correct records:", num_cor_4)
@@ -94,7 +98,8 @@ sel_L5 = col_l5.multiselect("L5", ls_L5_from_L4)
 if(len(sel_L5) > 0):
     df_filter_by_classes = df_filter_by_classes[df_filter_by_classes['L5'].isin(sel_L5)]
     num_verified_5, num_not_yet_5, num_cor_5, num_incor_5, num_need_info_5 = count_result(df_filter_by_classes, 'L5')
-    st.write("L5:  No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
+    st.subheader("L5: " + sel_L5)
+    st.write(" - No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
     st.write(" - No. of verified records:", num_verified_5)
     st.write(" - No. of not determined records:", num_not_yet_5)
     st.write(" - No. of correct records:", num_cor_5)
@@ -108,19 +113,19 @@ finite.attr(rankdir="LR", size="8,5")
 
 ####
 
-df_summary = load_verified_data()
+#df_summary = load_verified_data()
 #st.write(data)
 
-ls_L1 = list(set(df_summary['L1']))
-ls_L1.sort()
-sel_L1 = st.multiselect("L1", ls_L1)
-df_filter_by_classes = df_summary[df_summary['L1'].isin(sel_L1)]
+#ls_L1 = list(set(df_summary['L1']))
+#ls_L1.sort()
+#sel_L1 = st.multiselect("L1", ls_L1)
+#df_filter_by_classes = df_summary[df_summary['L1'].isin(sel_L1)]
 
 
 #st.write(sel_L1[0].split( )[0])
 
-ls_L2_from_L1 = list(set(df_summary[df_summary['L1'].isin(sel_L1)]['L2']))
-ls_L2_from_L1.sort()
+#ls_L2_from_L1 = list(set(df_summary[df_summary['L1'].isin(sel_L1)]['L2']))
+#ls_L2_from_L1.sort()
 
 finite.attr("node", shape="doublecircle")
 finite.attr("node", shape="circle")
