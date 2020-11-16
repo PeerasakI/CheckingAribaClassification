@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import datetime
 import networkx as nx
 import graphviz as graphviz
+import os.path
+import time
+import stat
 
 pd.options.display.max_colwidth = 9999
 pd.options.display.float_format = '${:,.2f}'.format
@@ -14,7 +17,9 @@ pd.options.display.float_format = '${:,.2f}'.format
 @st.cache(persist = True, suppress_st_warning=True)
 def load_verified_data():
     df_summary = pd.read_csv('./Data/Summary_Result.csv', sep= ',', encoding = 'utf8')
-    return df_summary
+    fileStatsObj = os.stat ( './Data/Summary_Result.csv' )
+    modificationTime = time.ctime(fileStatsObj [ stat.ST_MTIME ])
+    return modificationTime, df_summary
 
 def count_result(df_, l):
     col = l + '_ver'
@@ -23,15 +28,15 @@ def count_result(df_, l):
 
 
 st.title("Summarization of Ariba Enrichment")
-df_summary = load_verified_data()
-#st.write(df_summary)
+
+lastmodify, df_summary = load_verified_data()
+st.write("Last Modification: ", lastmodify)
 
 ls_L1 = list(set(df_summary['L1']))
 ls_L1.sort()
 col_l1, col_l2,col_l3, col_l4,col_l5 = st.beta_columns(5)
-sel_L1 = col_l1.multiselect("L1", ls_L1)
+sel_L1 = col_l1.multiselect("L1", ls_L1, default = "Information Technology Broadcasting and Telecommunications")
 df_filter_by_classes = df_summary[df_summary['L1'].isin(sel_L1)]
-st.write(df_filter_by_classes)
 num_verified_1, num_not_yet_1, num_cor_1, num_incor_1, num_need_info_1 = count_result(df_filter_by_classes, 'L1')
 st.write("L1:  No. of records:", df_filter_by_classes['[INV] Invoice ID'].sum())
 st.write(" - No. of verified records:", num_verified_1)
