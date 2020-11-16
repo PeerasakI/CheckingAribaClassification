@@ -13,7 +13,7 @@ pd.options.display.float_format = '${:,.2f}'.format
 ##### Read data ########
 @st.cache(persist = True, suppress_st_warning=True)
 def load_verified_data():
-    df_summary = pd.read_csv('./Data/Summary_result.csv', sep= ',', encoding = 'utf8')
+    df_summary = pd.read_csv('./Data/Summary_Result.csv', sep= ',', encoding = 'utf8')
     return df_summary
 
 def count_result(df_, l):
