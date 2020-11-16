@@ -4,10 +4,7 @@ import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
 import datetime
-from wordcloud import WordCloud
-import re
 import networkx as nx
-import os.path
 import graphviz as graphviz
 
 pd.options.display.max_colwidth = 9999
